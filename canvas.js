@@ -1,4 +1,33 @@
-SetupCanvas("Макс", 'twes.jpg', 370, 1000, 7, 8)
+var can = SetupCanvas("Макс", 'twes.jpg', 370, 1000, 7, 8)
+
+function SetupCanvas(nick, logo, exp_user, need_xp, ex_lvl, next_lvl) {
+    const c = document.createElement("canvas")
+    return $(document).ready(function() {
+        document.body.appendChild(c)
+        const canvas = document.getElementsByTagName("canvas")[0]
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#8379AE';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        FillNickname(ctx, nick)
+        FillXP(ctx, exp_user, need_xp);
+        FillStrokeXP(ctx, exp_user, need_xp);
+        FillExLvl(ctx, ex_lvl);
+        FillNextLvl(ctx, next_lvl);
+        var img = new Image();
+        img.src = logo;
+        img.onload = function() {
+            ctx.drawImage(img, 10, 10, 120, 120);
+
+        };
+        const url = canvas.toDataURL();
+        console.log(url)
+
+
+
+    })
+}
+
+
 
 function FillNickname(ctx, nick) {
     ctx.font = '14px Times New Roman';
@@ -7,13 +36,6 @@ function FillNickname(ctx, nick) {
     ctx.fillText(`Nickname: ${nick}`, 150, 26, 150);
 }
 
-function FillLogo(ctx, logo) {
-    var img = new Image();
-    img.src = logo;
-    img.onload = function() {
-        ctx.drawImage(img, 10, 10, 120, 120);
-    };
-}
 
 function FillXP(ctx, exp_user, need_exp) {
     ctx.font = '14px Times New Roman';
@@ -38,29 +60,4 @@ function FillExLvl(ctx, ex_lvl) {
 function FillNextLvl(ctx, next_lvl) {
     ctx.fillStyle = '#000000';
     ctx.fillText(`${next_lvl}`, 270, 130)
-}
-
-function SetupCanvas(nick, logo, exp_user, need_xp, ex_lvl, next_lvl) {
-    nick: nick;
-    logo: logo;
-    exp: exp_user;
-    need_xp: need_xp;
-    ex_lvl: ex_lvl;
-    next_lvl: next_lvl;
-
-    const c = document.createElement("canvas")
-    return window.onload = () => {
-        document.body.appendChild(c)
-        const canvas = document.getElementsByTagName("canvas")[0]
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#8379AE';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        FillNickname(ctx, nick)
-        FillLogo(ctx, logo)
-        FillXP(ctx, exp_user, need_xp)
-        FillStrokeXP(ctx, exp_user, need_xp)
-        FillExLvl(ctx, ex_lvl)
-        FillNextLvl(ctx, next_lvl)
-    }
-
 }
