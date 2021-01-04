@@ -1,16 +1,4 @@
-const c = document.createElement("canvas")
-window.onload = () => {
-    document.body.appendChild(c)
-    const canvas = document.getElementsByTagName("canvas")[0]
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#8379AE';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    FillNickname(ctx, "Хуй")
-    FillLogo(ctx, "twes.jpg")
-    FillXP(ctx, 240, 1000)
-    FillStrokeXP(ctx, 240, 1000)
-}
+SetupCanvas("Макс", 'twes.jpg', 370, 1000, 7, 8)
 
 function FillNickname(ctx, nick) {
     ctx.font = '14px Times New Roman';
@@ -40,4 +28,39 @@ function FillStrokeXP(ctx, exp_user, need_xp) {
     var procents_exp = Math.round(((exp_user / need_xp) * 100) * 130 / 100); //шайтан формула 130 - ширина строки
     ctx.fillStyle = '#153A9A';
     ctx.fillRect(150, 90, procents_exp, 20);
+}
+
+function FillExLvl(ctx, ex_lvl) {
+    ctx.fillStyle = '#000000';
+    ctx.fillText(`${ex_lvl}`, 150, 130)
+}
+
+function FillNextLvl(ctx, next_lvl) {
+    ctx.fillStyle = '#000000';
+    ctx.fillText(`${next_lvl}`, 270, 130)
+}
+
+function SetupCanvas(nick, logo, exp_user, need_xp, ex_lvl, next_lvl) {
+    nick: nick;
+    logo: logo;
+    exp: exp_user;
+    need_xp: need_xp;
+    ex_lvl: ex_lvl;
+    next_lvl: next_lvl;
+
+    const c = document.createElement("canvas")
+    return window.onload = () => {
+        document.body.appendChild(c)
+        const canvas = document.getElementsByTagName("canvas")[0]
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#8379AE';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        FillNickname(ctx, nick)
+        FillLogo(ctx, logo)
+        FillXP(ctx, exp_user, need_xp)
+        FillStrokeXP(ctx, exp_user, need_xp)
+        FillExLvl(ctx, ex_lvl)
+        FillNextLvl(ctx, next_lvl)
+    }
+
 }
