@@ -7,23 +7,9 @@ window.onload = () => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     FillNickname(ctx, "Хуй")
-
-    ctx.font = '14px Times New Roman';
-    ctx.fillStyle = "#000000";
-    ctx.textBaseline = "bottom";
-    ctx.fillText(`Титулы:`, 150, 50);
-
     FillLogo(ctx, "twes.jpg")
-
     FillXP(ctx, 240, 1000)
-
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(150, 110, 130, 20);
-
-    ctx.fillStyle = '#153A9A';
-    ctx.fillRect(150, 110, 60, 20);
-
-
+    FillStrokeXP(ctx, 240, 1000)
 }
 
 function FillNickname(ctx, nick) {
@@ -45,5 +31,13 @@ function FillXP(ctx, exp_user, need_exp) {
     ctx.font = '14px Times New Roman';
     ctx.fillStyle = "#000000";
     ctx.textBaseline = "bottom";
-    ctx.fillText(`${exp_user}/${need_exp}`, 150, 110);
+    ctx.fillText(`${exp_user}/${need_exp}`, 150, 90);
+}
+
+function FillStrokeXP(ctx, exp_user, need_xp) {
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(150, 90, 130, 20);
+    var procents_exp = Math.round(((exp_user / need_xp) * 100) * 130 / 100); //шайтан формула 130 - ширина строки
+    ctx.fillStyle = '#153A9A';
+    ctx.fillRect(150, 90, procents_exp, 20);
 }
